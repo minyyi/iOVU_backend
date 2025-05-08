@@ -1,1 +1,2 @@
-spring.application.name=iOVU-back
+server:
+  port: 8081
