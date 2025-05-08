@@ -10,4 +10,5 @@ public class IOvuBackApplication {
 		SpringApplication.run(IOvuBackApplication.class, args);
 	}
 
+	private String name;
 }
