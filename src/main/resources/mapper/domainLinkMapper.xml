@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.iovu.iovuback.mapper.DomainLinkMapper">
+    <resultMap id="DomainLinkWithLinksMap" type="DomainLink">
+        <id property="domain_link_id" column="do_domain_link_id" />
+        <result property="report_detail_id" column="do_report_detail_id" />
+        <result property="domain_name" column="do_domain_name" />
+        <result property="rate" column="do_rate" />
+        <result property="chatgpt" column="do_chatgpt" />
+        <result property="gemini" column="do_gemini" />
+        <result property="category" column="do_category" />
+
+        <collection property="link_list" ofType="LinkList">
+            <id property="link_id" column="li_link_id" />
+            <result property="domain_link_id" column="li_domain_link_id" />
+            <result property="link" column="li_link" />
+        </collection>
+    </resultMap>
+    <select id="findDetail" resultMap="DomainLinkWithLinksMap">
+        select
+            do.domain_link_id as do_domain_link_id,
+            do.report_detail_id as do_report_detail_id,
+            do.domain_name as do_domain_name,
+            do.rate as do_rate,
+            do.chatgpt as do_chatgpt,
+            do.gemini as do_gemini,
+            do.category as do_category,
+            li.link_id as li_link_id,
+            li.domain_link_id as li_domain_link_id,
+            li.link as li_link
+        from
+            domain_link do
+                inner join
+            link_list li
+        on do.domain_link_id = li.domain_link_id
+        where do.report_detail_id = #{report_detail_id}
+        order by
+            do.domain_link_id
+    </select>
+
+</mapper>
+
