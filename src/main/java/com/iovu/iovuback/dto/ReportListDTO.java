@@ -1,4 +1,4 @@
-package com.iovu.iovuback.domain;
+package com.iovu.iovuback.dto;
 
 
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReportList {
+public class ReportListDTO {
     private Integer report_id;
     private String keyword;
     private String status;
@@ -19,15 +19,7 @@ public class ReportList {
     private Timestamp created_at;
     private Timestamp updated_at;
 
-    private List<ReportDetail> report_details;
-    private Dashboard dashboard;
-
-
-    public ReportList(String keyword, String status, Integer data_volume) {
-        this.keyword = keyword;
-        this.status = status;
-        this.data_volume = data_volume;
-//        this.report_details = report_details;
-    }
+    private List<ReportDetailDTO> report_details_dto;
+    private DashboardDTO dashboard_dto;
 
 }
