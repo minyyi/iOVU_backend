@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Reports {
+public class ReportList {
     private Integer report_id;
     private String keyword;
     private String status;
@@ -22,7 +22,7 @@ public class Reports {
     private List<ReportDetail> report_details;
 
 
-    public Reports(String keyword, String status, Integer data_volume, List<ReportDetail> report_details) {
+    public ReportList(String keyword, String status, Integer data_volume, List<ReportDetail> report_details) {
         this.keyword = keyword;
         this.status = status;
         this.data_volume = data_volume;
