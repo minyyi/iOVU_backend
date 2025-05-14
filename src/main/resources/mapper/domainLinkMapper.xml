@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.iovu.iovuback.mapper.DomainLinkMapper">
-    <resultMap id="DomainLinkWithLinksMap" type="DomainLink">
+    <resultMap id="DomainLinksMap" type="DomainLink">
         <id property="domain_link_id" column="do_domain_link_id" />
         <result property="report_detail_id" column="do_report_detail_id" />
         <result property="domain_name" column="do_domain_name" />
@@ -19,7 +19,7 @@
             <result property="link" column="li_link" />
         </collection>
     </resultMap>
-    <select id="findDetail" resultMap="DomainLinkWithLinksMap">
+    <select id="findDetail" resultMap="DomainLinksMap">
         select
             do.domain_link_id as do_domain_link_id,
             do.report_detail_id as do_report_detail_id,
@@ -41,5 +41,55 @@
             do.domain_link_id
     </select>
 
+    <!-- 도메인 결과 매핑 -->
+    <resultMap id="exportDomain" type="DomainLink">
+        <id property="domain_link_id" column="domain_link_id"/>
+        <result property="report_detail_id" column="report_detail_id"/>
+        <result property="domain_name" column="domain_name"/>
+        <result property="rate" column="rate"/>
+        <result property="chatgpt" column="chatgpt"/>
+        <result property="gemini" column="gemini"/>
+        <result property="category" column="category"/>
+    </resultMap>
+    <!-- 보고서 ID로 도메인 조회 -->
+    <select id="findDomainByReportId" parameterType="int" resultMap="exportDomain">
+        SELECT
+            domain_link_id,
+            report_detail_id,
+            domain_name,
+            rate,
+            chatgpt,
+            gemini,
+            category
+        FROM
+            domain_link
+        WHERE
+            report_detail_id = #{report_detail_id}
+        ORDER BY
+            rate DESC
+    </select>
+
+    <!-- 링크 결과 매핑 -->
+    <resultMap id="exportLinks" type="DomainLink">
+        <id property="report_detail_id" column="do_report_detail_id"/>
+        <result property="domain_name" column="do_domain_name"/>
+
+        <collection property="link_list" ofType="LinkList">
+            <result property="link" column="li_link" />
+        </collection>
+    </resultMap>
+    <!-- 보고서 ID로 링크 목록 조회 -->
+    <select id="findLinkListByReportId" parameterType="int" resultMap="exportLinks">
+        select
+            do.report_detail_id as do_report_detail_id,
+            do.domain_name as do_domain_name,
+            li.link as li_link
+        from
+            domain_link do inner join link_list li
+            on do.domain_link_id = li.domain_link_id
+        where do.report_detail_id = #{report_detail_id}
+        order by
+            do.domain_link_id
+    </select>
 </mapper>
 

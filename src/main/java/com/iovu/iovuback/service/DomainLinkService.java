@@ -14,18 +14,15 @@ public class DomainLinkService {
     @Autowired
     public DomainLinkMapper mapper;
 
-//    public List<LinkList> getAllLinkList(){
-//        return mapper.findAll();
-//    }
-//
-//    public List<LinkList> getFindById(Integer link_id){
-//
-//     return mapper.findById(link_id);
-//    }
-//    public List<DomainLink> findById(Integer domain_link_id) {
-//       return  mapper.getDomainLinkById(domain_link_id);
-//    }
     public List<DomainLink> getDomainBYDetail(Integer report_detail_id) {
         return mapper.findDetail(report_detail_id);
+    }
+
+    public List<DomainLink> getDomainByReportDetail(Integer report_detail_id) {
+        return mapper.findDomainByReportId(report_detail_id);
+    }
+
+    public List<LinkList> getLinkByReportDetail(Integer report_detail_id) {
+        return mapper.findLinkListByReportId(report_detail_id);
     }
 }
