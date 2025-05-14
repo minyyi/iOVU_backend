@@ -7,19 +7,21 @@
     <select id="getDashboard" resultType="Dashboard">
         SELECT
             db.dashboard_id,
-            db.report_id,
+            db.report_detail_id,
             db.result_summary,
             db.brand_rate1,
             db.brand_rate2,
             db.brand_rank,
             db.domain_rate1,
             db.domain_rate2,
-            db.brand_mention
+            db.brand_mention,
+            rd.ai_type,
+            rd.json_data
         FROM
             dashboard db
                 JOIN
-            report_list rl ON db.report_id = rl.report_id
-        WHERE db.report_id = #{reportId}
+            report_detail rd ON db.report_detail_id = rd.report_detail_id
+        WHERE rd.report_id = #{reportId}
     </select>
 
 
