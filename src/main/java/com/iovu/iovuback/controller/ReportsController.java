@@ -22,10 +22,6 @@ public class ReportsController {
         this.reportsService = reportsService;
     }
 
-//    @GetMapping("/reports")
-//    public List<ReportList> getAllReports() {
-//        return reportsService.selectAll();
-//    }
     @GetMapping("/reports")
     public ResponseEntity<List<ReportList>> getAllReports() {
         List<ReportList> reports = reportsService.selectAll();

@@ -4,9 +4,12 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>Login</title>
 </head>
 <body>
-    <h1>test</h1>
+<h1>Login with OAuth 2.0</h1>
+<div>
+    <a href="/oauth2/authorization/kakao">Kakao로 로그인</a>
+</div>
 </body>
 </html>
