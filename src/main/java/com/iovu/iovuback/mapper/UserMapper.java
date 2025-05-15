@@ -3,6 +3,7 @@ package com.iovu.iovuback.mapper;
 import com.iovu.iovuback.domain.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import com.iovu.iovuback.domain.Users;
 
 @Mapper
 public interface UserMapper {
@@ -20,4 +21,8 @@ public interface UserMapper {
 
     // ID로 사용자 조회
     User findByUserId(String userId);
+  
+    Users findByProviderAndUid(String provider, String providerUid);
+    
+    void insert(Users users);
 }

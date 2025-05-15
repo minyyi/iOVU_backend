@@ -4,10 +4,13 @@ import com.iovu.iovuback.domain.User;
 import com.iovu.iovuback.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.UUID;
+import com.iovu.iovuback.domain.Users;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
     private UserMapper userMapper;
@@ -50,4 +53,15 @@ public class UserService {
 
         return user;
     }
+  
+       public Users saveNew(Users users) {
+        Users existing = userMapper.findByProviderAndUid(users.getProvider(), users.getProviderUid());
+        if (existing == null) {
+            userMapper.insert(users);
+            return users;
+        }
+        return existing;
+    }
 }
+
+
