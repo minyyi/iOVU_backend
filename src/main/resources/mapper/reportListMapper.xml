@@ -4,12 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.iovu.iovuback.mapper.ReportListMapper">
-    <select id="selectAll" resultType="ReportList">
+    <select id="selectAll" resultType="com.iovu.iovuback.domain.ReportList">
         select * from report_list
     </select>
 
 
-    <insert id="insertReportListDTO" parameterType="ReportListDTO">
+    <insert id="insertReportListDTO" parameterType="com.iovu.iovuback.dto.ReportListDTO">
         <selectKey keyProperty="report_id" resultType="int" order="BEFORE">
             SELECT report_id_seq.NEXTVAL FROM dual
         </selectKey>
@@ -19,7 +19,7 @@
         #{report_id}, 'USER001', #{keyword}, #{status}, #{data_volume}, #{created_at}, #{updated_at}
         )
     </insert>
-    <insert id="insertReportDetailDTO" parameterType="ReportDetailDTO">
+    <insert id="insertReportDetailDTO" parameterType="com.iovu.iovuback.dto.ReportDetailDTO">
         <selectKey keyProperty="report_detail_id" resultType="int" order="BEFORE">
             SELECT report_detail_id_seq.NEXTVAL FROM dual
         </selectKey>
@@ -29,7 +29,7 @@
         #{report_detail_id}, #{report_id}, #{ai_type}, #{created_at}, #{json_data}
         )
     </insert>
-    <insert id="insertConsultingDTO" parameterType="ConsultingDTO">
+    <insert id="insertConsultingDTO" parameterType="com.iovu.iovuback.dto.ConsultingDTO">
         <selectKey keyProperty="consulting_id" resultType="int" order="BEFORE">
             SELECT consulting_id_seq.NEXTVAL FROM dual
         </selectKey>
@@ -39,7 +39,7 @@
         #{consulting_id}, #{report_detail_id}, #{result}, #{consulting}
         )
     </insert>
-    <insert id="insertDomainLinkDTO" parameterType="DomainLinkDTO">
+    <insert id="insertDomainLinkDTO" parameterType="com.iovu.iovuback.dto.DomainLinkDTO">
         <selectKey keyProperty="domain_link_id" resultType="int" order="BEFORE">
             SELECT domain_link_id_seq.NEXTVAL FROM dual
         </selectKey>
@@ -49,7 +49,7 @@
         #{domain_link_id}, #{report_detail_id}, #{domain_name}, #{rate}, #{chatgpt}, #{gemini}, #{category}
         )
     </insert>
-    <insert id="insertLinkListDTO" parameterType="LinkListDTO">
+    <insert id="insertLinkListDTO" parameterType="com.iovu.iovuback.dto.LinkListDTO">
         <selectKey keyProperty="link_id" resultType="int" order="BEFORE">
             SELECT link_list_id_seq.NEXTVAL FROM dual
         </selectKey>
@@ -59,7 +59,7 @@
         #{link_id}, #{domain_link_id}, #{link}
         )
     </insert>
-    <insert id="insertDashboardDTO" parameterType="DashboardDTO">
+    <insert id="insertDashboardDTO" parameterType="com.iovu.iovuback.dto.DashboardDTO">
         <selectKey keyProperty="dashboard_id" resultType="int" order="BEFORE">
             SELECT dashboard_id_seq.NEXTVAL FROM dual
         </selectKey>
