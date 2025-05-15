@@ -23,4 +23,9 @@ spring:
 #            - profile
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.iovu.iovuback.domain, com.iovu.iovuback.dto
+  type-aliases-package: com.iovu.iovuback.domain
+
+#pdf
+pdf:
+  font:
+    path: classpath:fonts/NanumGothic.ttf
