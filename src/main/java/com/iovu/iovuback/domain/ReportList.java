@@ -20,6 +20,8 @@ public class ReportList {
     private Timestamp updated_at;
 
     private List<ReportDetail> report_details;
+  
+    private Dashboard dashboard;
 
 
     public ReportList(String keyword, String status, Integer data_volume, List<ReportDetail> report_details) {
