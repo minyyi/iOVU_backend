@@ -14,9 +14,9 @@
             SELECT report_id_seq.NEXTVAL FROM dual
         </selectKey>
         INSERT INTO report_list (
-        report_id, keyword, status, data_volume, created_at, updated_at
+        report_id, user_id, keyword, status, data_volume, created_at, updated_at
         ) VALUES (
-        #{report_id}, #{keyword}, #{status}, #{data_volume}, #{created_at}, #{updated_at}
+        #{report_id}, 'USER001', #{keyword}, #{status}, #{data_volume}, #{created_at}, #{updated_at}
         )
     </insert>
     <insert id="insertReportDetailDTO" parameterType="ReportDetailDTO">
